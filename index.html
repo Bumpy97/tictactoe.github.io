@@ -154,6 +154,18 @@
   </div>
 
   <script>
+        vkBridge.send('VKWebAppShowBannerAd', {
+        banner_location: 'bottom'
+      })
+        .then((data) => {
+          if (data.result) {
+            // Баннерная реклама отобразилась
+          }
+        })
+        .catch((error) => {
+          // Ошибка
+          console.log(error);
+        });
 
     let currentPlayer = 'X';
     let board = [
@@ -168,23 +180,7 @@
     let adBanner = false;
 
     
-    function adds() {
-    if(adBanner === false){
-            vkBridge.send('VKWebAppShowBannerAd', {
-        banner_location: 'bottom'
-      })
-        .then((data) => {
-          if (data.result) {
-            // Баннерная реклама отобразилась
-          }
-        })
-        .catch((error) => {
-          // Ошибка
-          console.log(error);
-        });
-      adBanner = true;
-    }
-      
+    function adds() {     
      if (adCount === 5) {
         adCount = 0;
         vkBridge.send('VKWebAppShowNativeAds', {
