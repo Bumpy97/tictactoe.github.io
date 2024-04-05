@@ -192,38 +192,21 @@
     }
     
     function adds() {
+     if (adCount === 5) {
+        adCount = 0;
+        vkBridge.send('VKWebAppShowNativeAds', {
+          ad_format: 'interstitial' /* Тип рекламы */
+        })
+          .then((data) => {
+            if (data.result) {
+              // Реклама была показана
+            } else {
+              // Ошибка
+            }
+          })
+          .catch((error) => { console.log(error); });
+      }
       adCount++;
-      
-
-
-      if (adCount === 2) {
-        vkBridge.send('VKWebAppShowNativeAds', {
-          ad_format: 'interstitial' /* Тип рекламы */
-        })
-          .then((data) => {
-            if (data.result) {
-              // Реклама была показана
-            } else {
-              // Ошибка
-            }
-          })
-          .catch((error) => { console.log(error); });
-      }
-
-      if (adCount === 5) {
-        adCount = -1;
-        vkBridge.send('VKWebAppShowNativeAds', {
-          ad_format: 'interstitial' /* Тип рекламы */
-        })
-          .then((data) => {
-            if (data.result) {
-              // Реклама была показана
-            } else {
-              // Ошибка
-            }
-          })
-          .catch((error) => { console.log(error); });
-      }
     }
 
 
