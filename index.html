@@ -165,10 +165,11 @@
 
 
     let adCount = 0;
-    function adds() {
-      adCount++;
-      console.log(adCount);
-      //баннер
+    let adStart = 0;
+
+    function adds_start(){
+      if(adStart === 0) {
+    //баннер
       vkBridge.send('VKWebAppShowBannerAd', {
         banner_location: 'bottom'
       })
@@ -181,6 +182,18 @@
           // Ошибка
           console.log(error);
         });
+      }
+
+      if(adStart === 5){
+        adStart = 0;
+      }
+      adStart++;
+      
+    }
+    
+    function adds() {
+      adCount++;
+      
 
 
       if (adCount === 2) {
